@@ -21,20 +21,30 @@ Move pages into **route groups** so only `(public)` is open:
 
 ```
 src/
+├─ lib/
+│  └─ components/
+│     └─ Header.svelte                 # Modular navbar component (only used in (app) layout)
 └─ routes/
-   ├─ +layout.svelte
-   ├─ +layout.server.js         # expose { user } to the layout (no guard here)
-   ├─ +page.server.js           # "/" redirects to /dashboard or /login
+   ├─ +layout.svelte                   # Root layout: NO header here; renders children only
+   ├─ +layout.server.js                # Expose { user } to the root layout (no guard)
+   ├─ +page.server.js                  # "/" -> redirect to /dashboard if logged in, else /auth
+   ├─ +page.svelte                     # Used to avoid run error it will auto redirect to /auth
    ├─ (public)/
-   │  ├─ login/+page.svelte
-   │  ├─ login/+page.server.js
-   │  └─ signup/+page.svelte
-   │     signup/+page.server.js
-   └─ (app)/                    # 🔒 everything here requires login
-      ├─ +layout.server.js      # the guard lives here
-      ├─ dashboard/+page.svelte
-      ├─ books/+page.svelte
-      └─ book/[id]/+page.svelte
+   │  └─ auth/
+   │     └─ +page.svelte               # /auth view: toggles Login/Signup, sets title reactively
+   └─ (app)/                           # 🔒 Signed-in section (navbar visible here)
+      ├─ +layout.svelte                # Renders <Header /> and wraps all private pages
+      ├─ +layout.server.js             # Auth guard: if (!locals.user) redirect to /auth
+      ├─ dashboard/
+      │  └─ +page.svelte               # /dashboard (sets <title>Dashboard | …)
+      ├─ books/
+      │  └─ +page.svelte               # /books (sets <title>Books | …)
+      ├─ book/
+      │  └─ [id]/
+      │     └─ +page.svelte            # /book/[id] (sets <title>{bookTitle} | … when you load data)
+      └─ settings/
+         └─ +page.svelte               # /settings (optional; include if you want a 5th view)
+
 ```
 
 ## 3) Views (pages) & behaviors

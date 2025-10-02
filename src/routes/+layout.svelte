@@ -9,9 +9,11 @@
 	let { data, children } = $props();
 </script>
 
+<!-- Optional fallback title -->
 <svelte:head>
 	<title>Library Tracker</title>
-	<!-- fallback; overridden by child pages -->
 </svelte:head>
 
-{@render children()}
+<main style="padding:1rem">
+	{@render children()}
+</main>

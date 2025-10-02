@@ -6,12 +6,22 @@
      */
     import { page } from "$app/state";
     export let user = null;
+
+    // Optional images (put any SVGs you like here)
+    import logo from "$logos/bookLogo.jpg";
+    import github from "$logos/github.svg";
 </script>
 
 <header>
+    <div class="corner">
+        <a href="/dashboard">
+            <img src={logo} alt="Library Tracker" />
+        </a>
+    </div>
+
     <nav class="nav">
         <!-- Brand / Home -->
-        <a class="brand" href="/dashboard">Library Tracker</a>
+        <!-- <a class="brand" href="/dashboard">Library Tracker</a> -->
 
         <!-- Main nav -->
         <ul class="links">
@@ -38,12 +48,45 @@
             </li>
         </ul>
 
-        <!-- Right side: link to /auth (acts as Log in / Log out placeholder) -->
-        <a class="auth" href="/auth">Auth</a>
+        <!-- Right side: link to /auth (acts as Log in / Log out placeholder)
+        <a class="auth" href="/auth">Auth</a> -->
     </nav>
+
+    <div class="corner">
+        <a
+            href="https://github.com/bestrada134/CMPS3390-Project-2"
+            aria-label="GitHub"
+            rel="noreferrer"
+            target="_blank"
+        >
+            <img src={github} alt="GitHub" />
+        </a>
+    </div>
 </header>
 
 <style>
+    header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+    .corner {
+        width: 3em;
+        height: 3em;
+    }
+    .corner a {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 100%;
+        height: 100%;
+    }
+    .corner img {
+        width: 2em;
+        height: 2em;
+        object-fit: contain;
+    }
+
     .nav {
         display: flex;
         align-items: center;
