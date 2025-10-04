@@ -5,10 +5,10 @@
      * We accept a `user` prop for later (real auth); unused for now.
      */
     import { page } from "$app/state";
-    export let user = null;
+    // export let user = null;
 
     // Optional images (put any SVGs you like here)
-    import logo from "$logos/bookLogo.jpg";
+    import logo from "$logos/bookLogo.png";
     import github from "$logos/github.svg";
 </script>
 
@@ -94,11 +94,6 @@
         padding: 0.75rem 1rem;
         border-bottom: 1px solid #ddd;
     }
-    .brand {
-        font-weight: 700;
-        text-decoration: none;
-        color: inherit;
-    }
     .links {
         display: flex;
         gap: 0.5rem;
@@ -113,11 +108,6 @@
     }
     .links li[aria-current="page"] a {
         border-bottom: 2px solid #333;
-    }
-    .auth {
-        margin-left: auto;
-        text-decoration: none;
-        color: #333;
     }
     a:hover {
         color: #0070f3;

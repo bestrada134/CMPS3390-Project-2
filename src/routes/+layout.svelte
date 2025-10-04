@@ -1,5 +1,6 @@
 <!-- src/routes/+layout.svelte -->
 <script>
+	import "../app.css"; // <-- this wires Tailwind into the app
 	/**
 	 * Root layout: no header here.
 	 * It only renders the current route via the Svelte 5 children snippet.
