@@ -53,6 +53,32 @@
     </nav>
 
     <div class="corner">
+        <!-- Simple, accessible POST that hits /auth?logout=1 -->
+        <form method="POST" action="/logout">
+            <label
+                for="logout"
+                class="mode-switch bg-white text-sky-600 hover:bg-sky-600 hover:text-white"
+            >
+                <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke-width="1.5"
+                    stroke="currentColor"
+                    class="size-6 stroke-current"
+                >
+                    <path
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        d="M8.25 9V5.25A2.25 2.25 0 0 1 10.5 3h6a2.25 2.25 0 0 1 2.25 2.25v13.5A2.25 2.25 0 0 1 16.5 21h-6a2.25 2.25 0 0 1-2.25-2.25V15M12 9l3 3m0 0-3 3m3-3H2.25"
+                    />
+                </svg></label
+            >
+            <button id="logout"> </button>
+        </form>
+    </div>
+
+    <div class="corner">
         <a
             href="https://github.com/bestrada134/CMPS3390-Project-2"
             aria-label="GitHub"

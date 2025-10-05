@@ -1,6 +1,8 @@
 <!-- src/routes/(public)/auth/+page.svelte -->
 <script>
-    import { goto } from "$app/navigation";
+    // provided by +layout.server.js above
+    export let data; // { user: { userID, Username, Email } | null }
+
     import logo from "$logos/bookLogo.png";
     // Toggle which form is visible
     let mode = "login"; // 'login' | 'signup'
@@ -143,14 +145,6 @@
                     Log in
                 </button>
             {/if}
-
-            <br />
-            <br />
-            <!-- You can keep your placeholder button or real forms here -->
-            <p>Temporary: click to go to dashboard.</p>
-            <button class="mode-switch" on:click={() => goto("/dashboard")}
-                >Go to Dashboard</button
-            >
         </div>
     </div>
 </div>

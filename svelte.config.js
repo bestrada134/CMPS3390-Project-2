@@ -17,7 +17,9 @@ const config = {
 			$components: 'src/lib/components',
 			$utils: 'src/lib/utils',
 			$styles: 'src/lib/styles',
-			$logos: 'src/lib/logos'
+			$logos: 'src/lib/logos',
+			$controllers: 'src/controllers',
+			$models: 'src/models'
 			// Do NOT alias $app/* — those are provided by SvelteKit
 		}
 	}
