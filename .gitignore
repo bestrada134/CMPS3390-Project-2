@@ -11,7 +11,7 @@ node_modules
 # symlinks links
 /app
 /public
-
+/db
 # OS
 .DS_Store
 Thumbs.db
