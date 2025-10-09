@@ -1,13 +1,13 @@
-@import 'tailwindcss';
+@import "tailwindcss";
 
+/* Component classes */
 @layer components {
 
-    /* drop-in Tailwind utilities for all your text inputs */
+    /* -------- Forms -------- */
     .tf-input {
         @apply w-full h-10 rounded-md border border-slate-300 bg-white px-3 text-slate-900 placeholder:text-slate-400 outline-none ring-0 focus:border-sky-500 focus:ring-2 focus:ring-sky-200;
     }
 
-    /* label style */
     .tf-label {
         @apply block text-sm font-medium text-slate-700;
     }
@@ -16,23 +16,112 @@
         @apply block mx-auto w-64 h-11 rounded-md bg-slate-600 text-white font-semibold;
     }
 
-    /* Pill-style secondary button used to switch Login/Signup */
     .mode-switch {
         @apply inline-flex items-center gap-1.5 rounded-full border border-slate-300 bg-white px-4 py-1.5 text-sm font-medium text-slate-700 hover:bg-slate-50 active:scale-[.99] focus:outline-none focus:ring-2 focus:ring-sky-200;
     }
 
-    /* Dim + disable interactions when current mode is selected */
     .mode-switch:disabled {
         @apply opacity-60 pointer-events-none;
     }
 
-    /* give the “active/current” pill a subtle filled look */
     .mode-switch[aria-pressed="true"] {
         @apply bg-slate-100 border-slate-400;
     }
 
-    /* tiny helper if you include an icon */
     .mode-switch__icon {
         @apply h-4 w-4;
+    }
+
+    /* NOTE: Use Tailwind’s built-in `sr-only` utility directly in markup (avoid self-@apply). */
+
+    /* -------- Header -------- */
+    .c-header {
+        @apply relative flex items-center justify-between border-b border-zinc-200 px-4 py-2 bg-white;
+    }
+
+    .c-corner {
+        @apply w-14 h-14 flex items-center justify-center;
+    }
+
+    .c-corner-img {
+        @apply w-full h-full object-contain;
+    }
+
+    .c-nav-desktop {
+        @apply hidden md:flex items-center;
+    }
+
+    .c-links {
+        @apply flex items-center gap-2;
+    }
+
+    .c-link {
+        @apply text-zinc-800 hover:text-sky-700 px-2 py-1 transition-colors;
+    }
+
+    .c-links li[aria-current="page"] .c-link {
+        @apply border-b-2 border-zinc-900;
+    }
+
+    .c-hamburger {
+        @apply md:hidden inline-flex items-center justify-center rounded-md border border-zinc-300 p-2 hover:bg-zinc-100 focus:outline-none focus:ring-2 focus:ring-sky-500;
+    }
+
+    .c-icon {
+        @apply h-6 w-6;
+    }
+
+    .c-mobile-menu {
+        @apply hidden md:hidden absolute top-full left-0 right-0 z-50 bg-white border-b border-zinc-200 shadow-sm;
+    }
+
+    /* Keep it hidden on md+ even when “open” */
+    .c-mobile-menu--open {
+        @apply block md:hidden;
+    }
+
+    .c-mobile-links {
+        @apply flex flex-col divide-y divide-zinc-200;
+    }
+
+    .c-mobile-link {
+        @apply block px-4 py-3 text-zinc-800 hover:bg-zinc-50;
+    }
+
+    .c-mobile-links li[aria-current="page"] .c-mobile-link {
+        @apply bg-zinc-50 font-medium;
+    }
+
+    /* -------- Footer -------- */
+    .c-footer {
+        @apply relative mt-8 border-t border-zinc-200 bg-white pt-4 pb-16 px-4;
+    }
+
+    /* pb-16 ensures content doesn't overlap the corner buttons */
+
+    .c-signed-in {
+        @apply mb-3 text-sm text-zinc-600 text-center;
+    }
+
+    /* Bottom-left GitHub */
+    .c-github-link {
+        @apply absolute left-4 bottom-4 block;
+    }
+
+    .c-github-img {
+        @apply w-8 h-8 object-contain;
+    }
+
+    /* Bottom-right Logout */
+    .c-logout-form {
+        @apply absolute right-4 bottom-4;
+    }
+
+    .c-logout-btn {
+        @apply inline-flex items-center gap-2 rounded-md border border-sky-600 px-4 py-2 bg-white text-sky-700 hover:bg-sky-600 hover:text-white transition;
+    }
+
+    .c-logout-icon {
+        @apply h-5 w-5;
     }
 }

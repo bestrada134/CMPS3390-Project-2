@@ -11,7 +11,7 @@ const config = {
 		adapter: adapter(),
 
 
-		// ✅ Add your aliases here — paths are relative to the project root
+		// Add your aliases here — paths are relative to the project root
 		alias: {
 			// $lib is built-in → 'src/lib' (no need to redefine)
 			$components: 'src/lib/components',
