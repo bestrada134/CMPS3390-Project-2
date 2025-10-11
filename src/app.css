@@ -1,5 +1,17 @@
 @import "tailwindcss";
 
+/**
+* Custom global styles and component classes using Tailwind CSS
+* @layer components is the recommended way to add custom component classes when using Tailwind CSS.
+*
+* This ensures that your custom styles are included in the final CSS output.
+* They are output after base styles but before utility classes,
+* so utility classes can override them if both are present.
+
+* More info: https://tailwindcss.com/docs/adding-custom-styles#adding-base-styles
+*/
+
+
 @layer components {
 
     /* Outer padding shell */
@@ -47,6 +59,20 @@
 
     .mode-switch__icon {
         @apply h-4 w-4;
+    }
+
+    /* -------- book/[id] -------- */
+
+    .stage {
+        @apply mx-auto w-full max-w-3xl;
+    }
+
+    .state-center {
+        @apply grid place-items-center min-h-[40vh];
+    }
+
+    .card {
+        @apply rounded-xl border border-zinc-200 bg-white p-4 shadow-sm;
     }
 
     /* -------- Header -------- */
