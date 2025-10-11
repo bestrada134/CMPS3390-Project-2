@@ -1,7 +1,7 @@
 ## Usage
 
-Once you've created a project and installed dependencies with `npm install` (or `pnpm install` or `yarn`), start a development server:
-
+Clone the repository, then change into the directory. 
+Then run the install so the packages are installed for the npm project, so you can start the npm project.
 ```sh
 git clone https://github.com/bestrada134/CMPS3390-Project-2.git
 
