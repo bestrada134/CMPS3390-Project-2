@@ -1,11 +1,26 @@
 @import "tailwindcss";
 
-/* Component classes */
 @layer components {
+
+    /* Outer padding shell */
+    .app-main {
+        @apply w-full px-4 py-6 sm:px-6 lg:px-8;
+    }
+
+    /* Child container: centered, full width up to a max, fixed height, scroll if needed */
+    .app-container {
+        @apply mx-auto w-full max-w-screen-lg overflow-auto;
+        /* Set size here (change to what you want) */
+        width: 100%;
+        /* already covered by w-full; kept for clarity */
+        height: 68vh;
+        /* <— pick your height */
+    }
 
     /* -------- Forms -------- */
     .tf-input {
-        @apply w-full h-10 rounded-md border border-slate-300 bg-white px-3 text-slate-900 placeholder:text-slate-400 outline-none ring-0 focus:border-sky-500 focus:ring-2 focus:ring-sky-200;
+        @apply w-full h-10 rounded-md border border-slate-300 bg-white px-3 text-slate-900 
+                placeholder:text-slate-400 outline-none ring-0 focus:border-sky-500 focus:ring-2 focus:ring-sky-200;
     }
 
     .tf-label {
@@ -17,7 +32,9 @@
     }
 
     .mode-switch {
-        @apply inline-flex items-center gap-1.5 rounded-full border border-slate-300 bg-white px-4 py-1.5 text-sm font-medium text-slate-700 hover:bg-slate-50 active:scale-[.99] focus:outline-none focus:ring-2 focus:ring-sky-200;
+        @apply inline-flex items-center gap-1.5 rounded-full border border-slate-300 bg-white px-4 py-1.5 
+                text-sm font-medium text-slate-700 hover:bg-slate-50 active:scale-[.99] focus:outline-none 
+                focus:ring-2 focus:ring-sky-200;
     }
 
     .mode-switch:disabled {
@@ -31,8 +48,6 @@
     .mode-switch__icon {
         @apply h-4 w-4;
     }
-
-    /* NOTE: Use Tailwind’s built-in `sr-only` utility directly in markup (avoid self-@apply). */
 
     /* -------- Header -------- */
     .c-header {
@@ -64,7 +79,8 @@
     }
 
     .c-hamburger {
-        @apply md:hidden inline-flex items-center justify-center rounded-md border border-zinc-300 p-2 hover:bg-zinc-100 focus:outline-none focus:ring-2 focus:ring-sky-500;
+        @apply md:hidden inline-flex items-center justify-center rounded-md border
+                border-zinc-300 p-2 hover:bg-zinc-100 focus:outline-none focus:ring-2 focus:ring-sky-500;
     }
 
     .c-icon {
@@ -75,7 +91,6 @@
         @apply hidden md:hidden absolute top-full left-0 right-0 z-50 bg-white border-b border-zinc-200 shadow-sm;
     }
 
-    /* Keep it hidden on md+ even when “open” */
     .c-mobile-menu--open {
         @apply block md:hidden;
     }
@@ -92,18 +107,15 @@
         @apply bg-zinc-50 font-medium;
     }
 
-    /* -------- Footer -------- */
+    /* -------- Footer (unchanged from corners version) -------- */
     .c-footer {
         @apply relative mt-8 border-t border-zinc-200 bg-white pt-4 pb-16 px-4;
     }
-
-    /* pb-16 ensures content doesn't overlap the corner buttons */
 
     .c-signed-in {
         @apply mb-3 text-sm text-zinc-600 text-center;
     }
 
-    /* Bottom-left GitHub */
     .c-github-link {
         @apply absolute left-4 bottom-4 block;
     }
@@ -112,13 +124,13 @@
         @apply w-8 h-8 object-contain;
     }
 
-    /* Bottom-right Logout */
     .c-logout-form {
         @apply absolute right-4 bottom-4;
     }
 
     .c-logout-btn {
-        @apply inline-flex items-center gap-2 rounded-md border border-sky-600 px-4 py-2 bg-white text-sky-700 hover:bg-sky-600 hover:text-white transition;
+        @apply inline-flex items-center gap-2 rounded-md border border-sky-600 px-4 py-2 
+                bg-white text-sky-700 hover:bg-sky-600 hover:text-white transition;
     }
 
     .c-logout-icon {
