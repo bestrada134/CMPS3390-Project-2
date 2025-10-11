@@ -213,3 +213,45 @@ export function getFilteredLibrary({ Title, Author, Genres, GenresMode = 'contai
 
   return books;
 }
+
+/** 
+ * Get a single book by its ID.
+ * @param {string} BookID
+ * @returns {Book|null}
+*/
+
+export function getBookById(BookID) {
+  if (!BookID) {
+    throw new Error('BookID is required.');
+  }
+
+  const id = Number(BookID);
+  if (Number.isNaN(id) || !Number.isInteger(id) || id <= 0) {
+    throw new Error('Invalid BookID.');
+  }
+
+  const sql = `
+    SELECT
+      b.bookID,
+      b.Title,
+      b.Author,
+      b.Abstract,
+      b.CoverUrl,
+      GROUP_CONCAT(g.genre, ',') AS GenresCSV
+    FROM Book AS b
+    LEFT JOIN Genre AS g
+      ON g.bookID = b.bookID
+    WHERE b.bookID = ?
+    GROUP BY b.bookID
+    LIMIT 1
+  `;
+
+  const row = db.prepare(sql).get(id); // .get() => single result object or undefined
+  if (!row) {
+    // throw new Error("No Book found");
+    
+    return null; // Not found
+  }
+
+  return rowToBook(row);
+} 

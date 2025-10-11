@@ -6,7 +6,8 @@
 
 import {
   getLibrary,
-  getFilteredLibrary
+  getFilteredLibrary,
+  getBookById
 } from '$models/book.model.js';
 
 /**
@@ -83,6 +84,28 @@ export function listLibraryFiltered(args = {}) {
     return {
       books: [],
       error: e?.message || 'Failed to filter library.'
+    };
+  }
+}
+/**
+ * Get a single book by its ID.
+ * @param {string} BookID
+ * @returns {{
+ *   book: import('$models/book.model.js').Book|null,
+ *   error: string|null
+ * }}
+ */
+export function getBook(BookID) {
+  try {
+    const book = getBookById(BookID);
+    return {
+      book,
+      error: null
+    };
+  } catch (e) {
+    return {
+      book: null,
+      error: e?.message || 'Failed to load book.'
     };
   }
 }
