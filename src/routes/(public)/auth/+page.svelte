@@ -15,12 +15,11 @@
     // Derived helpers for clean markup
     $: loginError = form?.where === "login" ? form?.error : null;
     $: signupError = form?.where === "signup" ? form?.error : null;
-    $: signupOk = form?.where === "signup" ? !!form?.created : false;
+    $: signupOk = form?.where === "login" ? !!form?.created : false;
 
     // Sticky inputs (keep what user typed on errors)
-    $: loginIdValue = form?.where === "login" ? (form?.values?.id ?? "") : "";
-    $: suUsername =
-        form?.where === "signup" ? (form?.values?.username ?? "") : "";
+    $: loginIdValue = form?.where === "login" ? (form?.values?.user ?? "") : "";
+    $: suUsername = form?.where === "signup" ? (form?.values?.username ?? "") : "";
     $: suEmail = form?.where === "signup" ? (form?.values?.email ?? "") : "";
 </script>
 
@@ -29,53 +28,44 @@
 </svelte:head>
 
 <!-- Layout wrapper -->
-<div class="flex flex-wrap lg:flex-nowrap">
-    <div
-        class="bg-zinc-600 h-12 lg:h-svh w-full lg:w-[calc(15vw)] px-4 py-2 flex lg:items-center lg:justify-end"
-    >
-        <img
-            src={logo}
-            alt="Logo"
-            class="h-8 w-auto lg:h-auto lg:w-48 object-contain"
-        />
+<div class="auth-shell">
+    <div class="auth-brand">
+        <img src={logo} alt="Logo" class="auth-brand__img" />
     </div>
 
-    <div
-        class="h-[calc(100vh-48px)] lg:h-svh w-full p-4 bg-[url('/library.png')] bg-no-repeat bg-center bg-cover flex lg:justify-center lg:items-start flex-col items-center"
-    >
-        <div
-            class="w-full md:w-[380px] rounded-md bg-zinc-100 p-4 min-h-32 flex flex-col gap-2"
-        >
-            <h1 class="text-xl">
+    <div class="auth-hero">
+        <div class="auth-panel">
+            <h1 class="auth-title">
                 {mode === "login" ? "Log in" : "Create your account"}
             </h1>
 
             {#if mode === "login"}
-                <!-- ✅ LOGIN MESSAGES -->
+                <!-- LOGIN MESSAGES -->
+                {#if signupOk}
+                    <div class="auth-alert auth-alert--ok">
+                        Account created! You can now log in.
+                    </div>
+                {/if}
                 {#if loginError}
-                    <div
-                        class="rounded-md border border-red-300 bg-red-50 p-3 text-red-800"
-                    >
+                    <div class="auth-alert auth-alert--error">
                         {loginError}
                     </div>
                 {/if}
 
-                <form method="POST" action="?/login" class="space-y-3">
-                    <label class="tf-label">
+                <form method="POST" action="?/login" class="auth-form">
+                    <label class="auth-label">
                         Username or Email
                         <input
                             name="user"
                             autocomplete="username"
                             required
-                            class="tf-input mt-1"
+                            class="auth-input"
                             value={loginIdValue}
                             aria-invalid={loginError ? "true" : undefined}
-                            aria-describedby={loginError
-                                ? "login-error"
-                                : undefined}
+                            aria-describedby={loginError ? "login-error" : undefined}
                         />
                     </label>
-                    <label class="tf-label">
+                    <label class="auth-label">
                         Password
                         <input
                             type="password"
@@ -83,14 +73,12 @@
                             autocomplete="current-password"
                             required
                             minlength="6"
-                            class="tf-input mt-1"
+                            class="auth-input"
                             aria-invalid={loginError ? "true" : undefined}
                         />
                     </label>
 
-                    <button type="submit" class="f-submit hover:brightness-110"
-                        >Sign In</button
-                    >
+                    <button type="submit" class="auth-submit">Sign In</button>
                 </form>
 
                 <button
@@ -98,12 +86,11 @@
                     on:click={() => (mode = "signup")}
                     disabled={mode === "signup"}
                     aria-pressed={mode === "signup"}
-                    class="mode-switch mx-auto mt-2"
+                    class="auth-tab"
                 >
-                    <!-- optional icon -->
                     <svg
                         viewBox="0 0 24 24"
-                        class="h-4 w-4"
+                        class="auth-icon-sm"
                         fill="none"
                         stroke="currentColor"
                         stroke-width="2"
@@ -114,18 +101,8 @@
                 </button>
             {:else}
                 <!-- SIGNUP MESSAGES -->
-                {#if signupOk}
-                    <div
-                        class="rounded-md border border-emerald-300 bg-emerald-50 p-3 text-emerald-800"
-                    >
-                        Account created! You can now log in.
-                    </div>
-                {/if}
                 {#if signupError}
-                    <div
-                        id="signup-error"
-                        class="rounded-md border border-red-300 bg-red-50 p-3 text-red-800"
-                    >
+                    <div id="signup-error" class="auth-alert auth-alert--error">
                         {signupError}
                     </div>
                 {/if}
@@ -133,33 +110,33 @@
                 <form
                     method="POST"
                     action="?/signup"
-                    class="space-y-3"
+                    class="auth-form"
                     aria-describedby={signupError ? "signup-error" : undefined}
                 >
-                    <label class="tf-label">
+                    <label class="auth-label">
                         Username
                         <input
                             name="username"
                             autocomplete="username"
                             required
-                            class="tf-input mt-1"
+                            class="auth-input"
                             value={suUsername}
                             aria-invalid={signupError ? "true" : undefined}
                         />
                     </label>
-                    <label class="tf-label">
+                    <label class="auth-label">
                         Email
                         <input
                             type="email"
                             name="email"
                             autocomplete="email"
                             required
-                            class="tf-input mt-1"
+                            class="auth-input"
                             value={suEmail}
                             aria-invalid={signupError ? "true" : undefined}
                         />
                     </label>
-                    <label class="tf-label">
+                    <label class="auth-label">
                         Password
                         <input
                             type="password"
@@ -167,14 +144,12 @@
                             autocomplete="new-password"
                             required
                             minlength="6"
-                            class="tf-input mt-1"
+                            class="auth-input"
                             aria-invalid={signupError ? "true" : undefined}
                         />
                     </label>
 
-                    <button type="submit" class="f-submit hover:brightness-110"
-                        >Create account</button
-                    >
+                    <button type="submit" class="auth-submit">Create account</button>
                 </form>
 
                 <button
@@ -182,11 +157,11 @@
                     on:click={() => (mode = "login")}
                     disabled={mode === "login"}
                     aria-pressed={mode === "login"}
-                    class="mode-switch mx-auto mt-2"
+                    class="auth-tab"
                 >
                     <svg
                         viewBox="0 0 24 24"
-                        class="h-4 w-4"
+                        class="auth-icon-sm"
                         fill="none"
                         stroke="currentColor"
                         stroke-width="2"

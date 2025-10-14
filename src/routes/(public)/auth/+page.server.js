@@ -27,7 +27,7 @@ function setUidCookie(cookies, userID) {
     cookies.set('uid', String(userID), {
         path: '/',                // cookie is valid for the whole site
         httpOnly: true,           // not readable by client JS
-        sameSite: 'lax',          // good default for web apps
+        sameSite: 'lax',
         secure: process.env.NODE_ENV === 'production',
         maxAge: ONE_DAY
     });
@@ -55,20 +55,12 @@ export const actions = {
         try {
             // 2) Run business logic (validates, hashes, inserts)
             const user = signup({ Username, Email, Password });
-
-            /* Option A (auto-login) — uncomment for immediate login:
-             * setUidCookie(cookies, user.userID);
-             * throw redirect(302, '/dashboard');
-            */
-
-            // Option B (current): stay on /auth and show success message
+            // stay on /auth and show success message
             return {
-                where: 'signup',         // tells +page.svelte which form to show
-                created: true,           // true → show a green success box
-                // username: user.Username  // optional: display the name
+                where: 'login',         // tells +page.svelte which form to show
+                created: true,          // true → show a green success box
             };
         } catch (e) {
-            // Return a 400 so the page can show a friendly error + keep inputs
             return fail(400, {
                 where: 'signup',
                 error: e?.message || 'Sign up failed',
@@ -84,8 +76,7 @@ export const actions = {
     login: async ({ request, cookies }) => {
         const fd = await request.formData();
 
-        // We accept either "id" or "user" as the field name for the identifier
-        const identifier = String(fd.get('id') ?? fd.get('user') ?? '').trim();
+        const identifier = String(fd.get('user') || '').trim();
         const password = String(fd.get('pw') || '');
 
         // Basic guard to help the user
@@ -93,7 +84,7 @@ export const actions = {
             return fail(400, {
                 where: 'login',
                 error: 'Enter username/email and password.',
-                values: { id: identifier }
+                values: { user: identifier }
             });
         }
 
@@ -103,7 +94,7 @@ export const actions = {
             return fail(400, {
                 where: 'login',
                 error: 'Invalid credentials',
-                values: { id: identifier }
+                values: { user: identifier }
             });
         }
 

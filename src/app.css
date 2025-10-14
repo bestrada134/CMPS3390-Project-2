@@ -14,6 +14,89 @@
 
 @layer components {
 
+    /* -------- Auth Page (src/routes/(public)/auth/+page.svelte) --------
+        Scoped styles for the auth screen. All classes are namespaced with `auth-`
+        to avoid collisions since this stylesheet is global.
+    --------------------------------------------------------------------- */
+    
+    .auth-shell {
+        @apply flex flex-wrap lg:flex-nowrap;
+    }
+
+    .auth-brand {
+        @apply bg-zinc-600 h-12 lg:h-svh w-full lg:w-[15vw] px-4 py-2 flex lg:items-center lg:justify-end;
+    }
+
+    .auth-brand__img {
+        @apply h-8 w-auto lg:h-auto lg:w-48 object-contain;
+    }
+
+    .auth-hero {
+        @apply h-[calc(100vh-48px)] lg:h-svh w-full p-4 bg-no-repeat bg-center bg-cover flex lg:justify-center lg:items-start flex-col items-center;
+        /* Tailwind arbitrary bg url via CSS to keep it robust in @apply */
+        background-image: url('/library.png');
+    }
+
+    .auth-panel {
+        @apply w-full md:w-[380px] rounded-md bg-zinc-100 p-4 min-h-32 flex flex-col gap-2;
+    }
+
+    .auth-title {
+        @apply text-xl;
+    }
+
+    /* Alerts */
+    .auth-alert {
+        @apply rounded-md border p-3;
+    }
+
+    .auth-alert--ok {
+        @apply border-emerald-300 bg-emerald-50 text-emerald-800;
+    }
+
+    .auth-alert--error {
+        @apply border-red-300 bg-red-50 text-red-800;
+    }
+
+    /* Forms */
+    .auth-form {
+        @apply space-y-3;
+    }
+
+    .auth-label {
+        @apply block text-sm font-medium text-slate-700;
+    }
+
+    .auth-input {
+        @apply w-full h-10 rounded-md border border-slate-300 bg-white px-3 text-slate-900 placeholder:text-slate-400 outline-none ring-0 focus:border-sky-500 focus:ring-2 focus:ring-sky-200 mt-1;
+    }
+
+    .auth-submit {
+        @apply block mx-auto w-64 h-11 rounded-md bg-slate-600 text-white font-semibold hover:brightness-110;
+    }
+
+    /* Mode switch / tab buttons */
+    .auth-tab {
+        @apply inline-flex items-center gap-1.5 rounded-full border border-slate-300 bg-white px-4 py-1.5 text-sm font-medium text-slate-700 hover:bg-slate-50 focus:outline-none focus:ring-2 focus:ring-sky-200 mx-auto mt-2;
+    }
+
+    .auth-tab:disabled {
+        @apply opacity-60 pointer-events-none;
+    }
+
+    .auth-tab[aria-pressed="true"] {
+        @apply bg-slate-100 border-slate-400;
+    }
+
+    /* Active press effect without relying on variant in @apply */
+    .auth-tab:active {
+        transform: scale(.99);
+    }
+
+    .auth-icon-sm {
+        @apply h-4 w-4;
+    }
+
     /* Outer padding shell */
     .app-main {
         @apply w-full px-4 py-6 sm:px-6 lg:px-8;
