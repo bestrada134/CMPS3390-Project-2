@@ -1,17 +1,8 @@
 <script>
-  // /** @typedef {{ Username: string }} User */
-  // /** @type {User | null} */
-  // export let user = null;
-
   import github from "$logos/github.svg";
 </script>
 
 <footer class="c-footer" role="contentinfo">
-  <!-- {#if user}
-    <p class="c-signed-in">
-      Signed in as <strong>{user.Username}</strong>
-    </p>
-  {/if} -->
 
   <!-- Bottom-left -->
   <a
