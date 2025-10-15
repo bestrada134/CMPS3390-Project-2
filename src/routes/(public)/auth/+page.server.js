@@ -46,26 +46,19 @@ export const actions = {
      * and returns a small payload the page can use (e.g., show success).
      */
     signup: async ({ request }) => {
-        // 1) Read form fields by their "name" attributes
+        // Read form fields by their "name" attributes
         const fd = await request.formData();
         const Username = String(fd.get('username') || '').trim();
         const Email = String(fd.get('email') || '').trim();
         const Password = String(fd.get('pw') || '');
 
         try {
-            // 2) Run business logic (validates, hashes, inserts)
             const user = signup({ Username, Email, Password });
 
-            /* Option A (auto-login) — uncomment for immediate login:
-             * setUidCookie(cookies, user.userID);
-             * throw redirect(302, '/dashboard');
-            */
-
-            // Option B (current): stay on /auth and show success message
+            // stay on /auth and show success message
             return {
                 where: 'signup',         // tells +page.svelte which form to show
                 created: true,           // true → show a green success box
-                // username: user.Username  // optional: display the name
             };
         } catch (e) {
             // Return a 400 so the page can show a friendly error + keep inputs
