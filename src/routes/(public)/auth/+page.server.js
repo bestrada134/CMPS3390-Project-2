@@ -46,14 +46,13 @@ export const actions = {
      * and returns a small payload the page can use (e.g., show success).
      */
     signup: async ({ request }) => {
-        // 1) Read form fields by their "name" attributes
+        // Read form fields by their "name" attributes
         const fd = await request.formData();
         const Username = String(fd.get('username') || '').trim();
         const Email = String(fd.get('email') || '').trim();
         const Password = String(fd.get('pw') || '');
 
         try {
-            // 2) Run business logic (validates, hashes, inserts)
             const user = signup({ Username, Email, Password });
             // stay on /auth and show success message
             return {

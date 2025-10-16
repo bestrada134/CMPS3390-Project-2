@@ -72,7 +72,7 @@ db.exec(`
 /* Ensure an Admin user exists                                         */
 /*  - Username: admin                                                  */
 /*  - Email:    admin@admin.com                                        */
-/*  - Password: admin  (stored as bcrypt hash)                         */
+/*  - Password: admin!  (stored as bcrypt hash)                         */
 /*  - Tries to assign userID = 1 on an empty DB                        */
 /* ------------------------------------------------------------------ */
 (function ensureAdminUser() {
