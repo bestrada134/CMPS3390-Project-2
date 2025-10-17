@@ -5,6 +5,7 @@
 	 * get the navbar — but /auth (in the public group) does not.
 	 */
 	import Header from "$components/Header.svelte";
+	import Footer from "$components/Footer.svelte";
 
 	/** @type {{ data: { user: any }, children: import('svelte').Snippet }} */
 	let { data, children } = $props();
@@ -15,3 +16,5 @@
 <main style="padding: 1rem;">
 	{@render children()}
 </main>
+
+<Footer/>

@@ -1,8 +1,8 @@
 <!-- src/routes/(app)/settings/+page.svelte -->
 
- <script>
-    export let data;
- </script>
+<script>
+export let data;
+</script>
 
 <svelte:head>
     <title>Settings | Library Tracker</title>
@@ -22,6 +22,7 @@
         <button type="submit">Save</button>
 
     </form>
+</div>
 
     <style>
         form label {
@@ -52,5 +53,3 @@
             cursor: pointer;
         }
     </style>
-</div>
-
