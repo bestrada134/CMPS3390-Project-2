@@ -18,7 +18,7 @@
     .card-dashboard {
         @apply block p-6 bg-white border border-gray-200 rounded-lg 
         shadow-sm hover:bg-gray-100 dark:bg-gray-800 dark:border-gray-700 
-        dark:hover:bg-gray-700 w-full
+        dark:hover:bg-gray-700 w-full h-40
     }
 
     .card-dashboard>h5 {
