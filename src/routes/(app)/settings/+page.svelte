@@ -1,8 +1,8 @@
 <!-- src/routes/(app)/settings/+page.svelte -->
 
- <script>
-    export let data;
- </script>
+<script>
+export let data;
+</script>
 
 <svelte:head>
     <title>Settings | Library Tracker</title>
@@ -23,6 +23,7 @@
 
         <button type="submit">Save</button>
     </form>
+</div>
 
     <style>
         form label {
@@ -38,13 +39,13 @@
             border-radius: 8px;
             font: inherit;
         }
-        form input: focus {
+        form input:focus {
             outline: none;
             border-color: #6f9cf6;
             box-shadow: 0 0 0 2px rgba(111,156,246,.2);
         }
         form button[type="submit"]{
-            margin top: .25rem;
+            margin-top: .25rem;
             padding: .55rem .9rem;
             border: 0;
             border-radius: 8px;
@@ -53,5 +54,3 @@
             cursor: pointer;
         }
     </style>
-</div>
-
