@@ -1,8 +1,6 @@
 <!-- src/routes/(app)/settings/+page.svelte -->
 
  <script>
-    import { nonpassive } from 'svelte/legacy';
-
     export let data;
  </script>
 
