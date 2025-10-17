@@ -12,8 +12,16 @@
 
 <div>
     <form action="?/update" method="post">
-        <input type="text" name="name" id="name" value="{data?.user?.Username ?? ''}" />
-        <input type="email" name="email" id="email" value="{data?.user?.Email ?? ''}" />
+        <label for="name">Name:</label><br>
+        <input type="text" name="name" id="name" value="{data?.user?.Username ?? ''}" /><br>
+
+        <label for="email">Email:</label><br>
+        <input type="email" name="email" id="email" value="{data?.user?.Email ?? ''}" /><br>
+
+        <label for="password">Password:</label><br>
+        <input type="text" name="password" id="password"><br><br>
+
+        <button type="submit">Save</button>
     </form>
 </div>
 
