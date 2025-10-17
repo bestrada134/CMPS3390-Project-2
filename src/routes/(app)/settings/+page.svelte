@@ -1,6 +1,8 @@
 <!-- src/routes/(app)/settings/+page.svelte -->
 
  <script>
+    import { nonpassive } from 'svelte/legacy';
+
     export let data;
  </script>
 
@@ -23,5 +25,35 @@
 
         <button type="submit">Save</button>
     </form>
+
+    <style>
+        form label {
+            display: inline-block;
+            width: 110px;
+            font-weight: 600;
+            margin-top: .35rem;
+        }
+        form input {
+            margin: .25rem 0 .6rem;
+            padding: .45rem .55rem;
+            border: 1px solid #d0d7de;
+            border-radius: 8px;
+            font: inherit;
+        }
+        form input: focus {
+            outline: none;
+            border-color: #6f9cf6;
+            box-shadow: 0 0 0 2px rgba(111,156,246,.2);
+        }
+        form button[type="submit"]{
+            margin top: .25rem;
+            padding: .55rem .9rem;
+            border: 0;
+            border-radius: 8px;
+            background: #111;
+            color: #fff;
+            cursor: pointer;
+        }
+    </style>
 </div>
 
