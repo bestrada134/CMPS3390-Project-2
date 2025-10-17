@@ -1,5 +1,5 @@
 // src/hooks.server.js
-import { findUserById } from './models/user.model.js';
+import { findUserById } from '$models/user.model.js';
 
 /** @type {import('@sveltejs/kit').Handle} */
 export const handle = async ({ event, resolve }) => {

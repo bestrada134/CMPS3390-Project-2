@@ -31,7 +31,7 @@ declare global {
 			} | null;
 		}
 
-		// Optional: if our +layout/+page load returns { user }
+		// If our +layout/+page load returns { user }
 		// then Svelte files can read it as `export let data; data.user`
 		interface PageData {
 			user?: {
