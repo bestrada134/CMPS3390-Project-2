@@ -4,10 +4,22 @@
 //
 // Computes button flags per book so the list can show the right button(s).
 
-import { listLibrary, listLibraryFiltered } from '$controllers/book.controller.js';
-import { getAllActiveLoanedBookIDs, getActiveLoansByUser } from '$models/loan.model.js';
-import { checkout, checkIn } from '$controllers/loan.controller.js';
-import { fail } from '@sveltejs/kit';
+import {
+        listLibrary,
+        listLibraryFiltered
+        } from '$controllers/book.controller.js';
+
+import {
+        getAllActiveLoanedBookIDs,
+        getActiveLoansByUser
+        } from '$models/loan.model.js';
+
+import {
+        checkout,
+        checkIn
+        } from '$controllers/loan.controller.js';
+
+import {fail} from '@sveltejs/kit';
 
 /** @type {import('./$types').PageServerLoad} */
 export function load({ url, locals }) {
