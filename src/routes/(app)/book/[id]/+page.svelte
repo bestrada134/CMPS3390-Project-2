@@ -71,24 +71,6 @@ function enhanceCheckIn() {
             <p class="text-red-700 font-medium">{data.error}</p>
             </div>
         </div>
-
-        {:else if !data?.book}
-        <div class="state-center">
-            <div class="w-full max-w-3xl animate-pulse">
-            <div class="h-6 w-40 rounded bg-zinc-200 mb-4"></div>
-            <div class="grid gap-6 sm:grid-cols-[10rem,1fr]">
-                <div class="h-52 w-40 rounded bg-zinc-200"></div>
-                <div class="space-y-3">
-                <div class="h-6 w-2/3 rounded bg-zinc-200"></div>
-                <div class="h-4 w-1/3 rounded bg-zinc-200"></div>
-                <div class="h-4 w-1/2 rounded bg-zinc-200"></div>
-                <div class="h-4 w-full rounded bg-zinc-200"></div>
-                <div class="h-4 w-5/6 rounded bg-zinc-200"></div>
-                </div>
-            </div>
-            </div>
-        </div>
-
         {:else}
         <div class="card">
             <div class="grid gap-6 sm:grid-cols-[10rem,1fr] sm:items-start">

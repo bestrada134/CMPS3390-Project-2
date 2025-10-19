@@ -1,0 +1,30 @@
+/** @type {import('./$types').PageServerLoad} */
+import {fail} from '@sveltejs/kit';
+
+export const actions = {
+
+    update: async ({ request, locals }) => {
+        // Read form fields by their "name" attributes
+        const fd = await request.formData();
+
+        const userID = Number(locals.user?.userID);
+        const column = String(fd.get('column') || '').trim();
+        const value = String(fd.get('value') || '').trim();
+
+        try {
+            const user = update( userID, column, value );
+            
+            console.log('Update completed');
+    
+            return {
+                // where: 'update',         
+                // created: true,          
+            };
+        } catch (e) {
+            return fail(400, {
+                where: 'update',
+                error: e?.message || 'Update failed',
+            });
+        }
+    }
+};
