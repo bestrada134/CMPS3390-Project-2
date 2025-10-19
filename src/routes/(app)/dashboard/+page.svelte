@@ -2,6 +2,11 @@
 <script>
 
     export let data;
+    let visible = false;
+    function togglelist(){
+        visible = !visible;
+    }
+
 </script>
 
 <svelte:head>
@@ -10,16 +15,15 @@
 
 
 <h1 class="text-4xl font-bold mb-3">Dashboard</h1>
-<h1 class="font-bold text-3xl mb-8">
+<h1 class="font-bold text-3xl mb-4">
     Welcome, {data.user.Username}!
 </h1>
 
-
 <div class="grid grid-cols-3 md:grid-cols-3 gap-4">
     <div>
-        <button id="loanbutton" class="card-dashboard">
+        <button class="card-dashboard" onclick={togglelist}>
         <h5>Loans</h5>
-        <p>Here are the biggest enterprise technology acquisitions of 2021 so far, in reverse chronological order.</p>
+        <p>Click me to see your current loans</p>
         </button>
     </div>
     <div>
@@ -31,26 +35,39 @@
     <div>
         <a href="/settings" class="card-dashboard">
         <h5>Settings</h5>
-        <p>Click me to make any changes to your email/password.</p>
+        <p>Make changes to your email/password.</p>
         </a>
     </div>
 </div>
 
 
 <!-- Dropdown menu -->
-<div id="loanlist" class="z-10 bg-white divide-y divide-gray-100 rounded-lg shadow-sm w-44 dark:bg-gray-700">
-    <ul class="py-2 text-sm text-gray-700 dark:text-gray-200" aria-labelledby="dropdownDefaultButton">
-      <li>
-        <a href="#" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Dashboard</a>
-      </li>
-      <li>
-        <a href="#" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Settings</a>
-      </li>
-      <li>
-        <a href="#" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Earnings</a>
-      </li>
-      <li>
-        <a href="#" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Sign out</a>
-      </li>
-    </ul>
+{#if visible}
+<!--Working list where it displays all the users loans-->
+<div class="loanlist-dashboard">
+    <table>
+        <thead>
+            <tr>
+                <th scope="col" class="px-6 py-3">
+                    Title
+                </th>
+                <th scope="col" class="px-6 py-3">
+                    Author
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+        {#each  data.result.items as b}
+            <tr>
+                <th scope="row">
+                    <a href={"/book/"+b.bookID} ><u>{b.Title}</u></a>
+                </th>
+                <td class="px-6 py-4">
+                  {b.Author}
+                </td>
+            </tr>
+            {/each}
+        </tbody>
+    </table>
 </div>
+{/if}
