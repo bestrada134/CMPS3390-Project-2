@@ -12,7 +12,7 @@
  *   the type checker is happy and beginners get predictable shapes.
  */
 
-import { db } from '../lib/db.js';
+import { db } from '$lib/db.js';
 
 /**
  * Insert a new user row.
