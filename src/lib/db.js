@@ -58,7 +58,7 @@ db.exec(`
     FOREIGN KEY (bookID) REFERENCES Book(bookID) ON DELETE CASCADE
   );
 
-  /* Loans (not used yet, but ready) */
+  /* Loans */
   CREATE TABLE IF NOT EXISTS Loaned (
     loanID INTEGER PRIMARY KEY AUTOINCREMENT,
     userID INTEGER NOT NULL,
@@ -90,7 +90,7 @@ db.exec(`
       db.prepare(
         "INSERT INTO User (userID, Username, Email, Password) VALUES (?, ?, ?, ?)"
       ).run(1, "admin", "admin@admin.com", pwdHash);
-      console.log("✅ Admin user created with userID=1");
+      console.log("Admin user created with userID=1");
       return;
     }
 
@@ -100,7 +100,7 @@ db.exec(`
       db.prepare(
         "INSERT INTO User (userID, Username, Email, Password) VALUES (?, ?, ?, ?)"
       ).run(1, "admin", "admin@admin.com", pwdHash);
-      console.log("✅ Admin user created with userID=1");
+      console.log("Admin user created with userID=1");
     } else {
       const info = db
         .prepare(
