@@ -37,7 +37,7 @@ function isValidPassword(newValue) {
  * @param {string} newValue 
  * @returns 
  */
-export function updateUserSettings(userID, attribute, newValue) {
+export function update(userID, attribute, newValue) {
     try {
         switch (attribute) {
             case 'Email':
