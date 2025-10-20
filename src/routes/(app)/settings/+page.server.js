@@ -1,5 +1,6 @@
 /** @type {import('./$types').PageServerLoad} */
 import {fail} from '@sveltejs/kit';
+import { update } from '$controllers/settings.controller.js';
 
 export const actions = {
 
@@ -14,12 +15,9 @@ export const actions = {
         try {
             const user = update( userID, column, value );
             
-            console.log('Update completed');
+            console.log(user);
     
-            return {
-                // where: 'update',         
-                // created: true,          
-            };
+            return user;
         } catch (e) {
             return fail(400, {
                 where: 'update',
