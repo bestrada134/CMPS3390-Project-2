@@ -4,7 +4,7 @@ import {
     checkSamePassword,
     updateUser,
 } from "$models/settings.model.js";
-import { findByEmail, findByUsername } from "$models/user.model";
+import { findByEmail, findByUsername } from "$models/user.model.js";
 
 // javascript
 // regex101.com
@@ -55,12 +55,12 @@ export function update(userID, attribute, newValue) {
                     throw new Error('Username is already taken.');
                 }
                 break;
-            case 'password':
+            case 'Password':
                 if (!isValidPassword(newValue)) {
                     throw new Error('Password must be at least 6 characters long.');
                 }
 
-                if (!checkSamePassword(userID, newValue)) {
+                if (checkSamePassword(userID, newValue)) {
                     throw new Error('New password is the same as the old password.');
                 }
                 break;

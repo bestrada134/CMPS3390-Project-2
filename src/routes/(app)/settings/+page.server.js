@@ -10,7 +10,7 @@ export const actions = {
 
         const userID = Number(locals.user?.userID);
         const column = String(fd.get('column') || '').trim();
-        const value = String(fd.get('value') || '').trim();
+        const value = String(fd.get('newValue') || '').trim();
 
         try {
             const user = update( userID, column, value );

@@ -14,7 +14,7 @@ export function checkSamePassword(userID, password) {
     if(!row) {
         throw new Error('User not found.');
     }
-    return row.Password === password;
+    return bcrypt.compareSync(password, row.Password);
 }
 
 /**
@@ -38,6 +38,15 @@ export function updatePassword(userID, newPassword) {
   * @param {string} newValue
 */
 export function updateUser(userID, attribute, newValue) {
+    if (attribute === "Password") {
+        return updatePassword(userID, newValue);
+    }
+    const allowed = { Email: "Email", Username: "Username" };
+    const col = allowed[attribute];
+    if (!col) throw new Error("Invalid attribute.");
+
+    const sql = `UPDATE User SET ${col} = ? WHERE userID = ?`;
+    return db.prepare(sql).run(newValue, userID);
     const row = db  
         .prepare('Update User Set ? = ? WHERE userID =?')
         .run(attribute, newValue, userID);
