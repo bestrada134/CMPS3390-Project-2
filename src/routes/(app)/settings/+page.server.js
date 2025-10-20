@@ -15,13 +15,17 @@ export const actions = {
         try {
             const user = update( userID, column, value );
             
-            console.log(user);
+            /* validation debugger */
+            // console.log(user);
     
-            return user;
+            return {
+                user,
+                where: 'update'
+            };
         } catch (e) {
             return fail(400, {
                 where: 'update',
-                error: e?.message || 'Update failed',
+                error: e?.message || 'Update failed'
             });
         }
     }

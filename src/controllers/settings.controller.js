@@ -30,6 +30,12 @@ function isValidPassword(newValue) {
     return newValue.length >= 6;
 }
 
+function notEmptyString(str) {
+    return typeof str === "string" && str.trim().length > 0;
+}
+
+
+
 /**
  * 
  * @param {number} userID 
@@ -41,6 +47,9 @@ export function update(userID, attribute, newValue) {
     try {
         switch (attribute) {
             case 'Email':
+                if (!notEmptyString(newValue)) {
+                    throw new Error('Input cannot be empty.')
+                }
                 if (!isValidEmail(newValue)) {
                     throw new Error('Invalid email format.');
                 }
@@ -50,12 +59,18 @@ export function update(userID, attribute, newValue) {
                 }
                 break;
             case 'Username':
+                if (!notEmptyString(newValue)) {
+                    throw new Error('Input cannot be empty.')
+                }
                 // Soft duplicate check
                 if (findByUsername(newValue)) {
                     throw new Error('Username is already taken.');
                 }
                 break;
             case 'Password':
+                if (!notEmptyString(newValue)) {
+                    throw new Error('Input cannot be empty.')
+                }
                 if (!isValidPassword(newValue)) {
                     throw new Error('Password must be at least 6 characters long.');
                 }

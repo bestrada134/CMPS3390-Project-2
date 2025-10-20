@@ -1,7 +1,9 @@
 <!-- src/routes/(app)/settings/+page.svelte -->
 
  <script>
-    export let data;
+    export let form;
+
+    $: updateError = form?.where === "update" ? form?.user?.error : null;
  </script>
 
 <svelte:head>
@@ -12,12 +14,17 @@
 
 <div>
     <form class="max-w-sm mx-auto" action="?/update" method="POST">
-        <label for="options" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Choose what to change</label>
-        <select name="column" id="options" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 darl:placeholder-gray-400 dark:texxt-white dark:focus:ring-blue-500  dark:focus:border-blue-500">
-            <option value="Username">Username</option>
-            <option value="Email">Email</option>
-            <option value="Password">Password</option>
-        </select>
+        {#if updateError && form != null}
+            <p class="text-red-500">{updateError}</p>
+        {:else if (form != null && form?.user?.success === true)}
+                <p class ="text-green-500">Update Successful!</p>
+        {/if}  
+            <label for="options" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Choose what to change</label>
+            <select name="column" id="options" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 darl:placeholder-gray-400 dark:texxt-white dark:focus:ring-blue-500  dark:focus:border-blue-500">
+                <option value="Username">Username</option>
+                <option value="Email">Email</option>
+                <option value="Password">Password</option>
+            </select>
         <input type="text" name="newValue" placeholder="New Value">
         <button type="submit">Save</button>
 
